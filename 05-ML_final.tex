@@ -1,0 +1,1069 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Spillover Effects of Platform Entry: Predicting Third-Party Seller Exit on JD.com},
+  pdfauthor={Zohre Yahyaee},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Spillover Effects of Platform Entry: Predicting Third-Party
+Seller Exit on JD.com}
+\author{Zohre Yahyaee}
+\date{2025-05-17}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This study investigates whether first-party (1P) entry into product
+spaces on JD.com increases the likelihood of third-party (3P) SKU exit.
+Using SKU-level panel data and a range of classification models, we find
+that exit appears to occur largely at random, which limits the
+predictive power of all tested models. Nevertheless, we observe that
+features capturing lack of recent orders and user interaction provide
+some explanatory value. Our best-performing model, an XGBoost classifier
+tuned via Bayesian optimization and interpreted using SHAP values,
+identifies disengagement and product space crowding as important---but
+ultimately insufficient---signals for accurately predicting exit
+behavior.
+\end{abstract}
+
+
+\section{Introduction}\label{introduction}
+
+\subsection{1.1 What is the research
+question?}\label{what-is-the-research-question}
+
+In this research, we investigate the dynamics of hybrid e-commerce
+platforms, where the platform plays a dual role: acting both as a
+retailer by selling its own products and as a platform operator
+facilitating third-party sellers. This dual role can create a conflict
+of interest, as the platform both supports and competes with third-party
+sellers. Prior research suggests that the entry of the platform as a
+first-party seller can negatively impact third-party sellers,
+potentially leading some of them to exit the market Zhu \& Liu (2018);
+Jiang et al. (2011). Our goal is to empirically examine this phenomenon
+and understand how the platform's dual role influences third-party
+seller behavior.
+
+\subsection{1.2. Why is this research question
+important?}\label{why-is-this-research-question-important}
+
+This question is important because the hybrid platform business model
+has become ubiquitous among online platforms globally. For example,
+Amazon in the U.S. has utilized this model since the early 2000s, while
+Alibaba and JD.com in China also follow similar practices Hu et al.
+(2024); (\textbf{wells2018amazon?}). Understanding the impact of this
+model is crucial for both policymakers and businesses, as it shapes
+market competition and affects seller sustainability. While hybrid
+platforms offer benefits through increased consumer reach and
+operational efficiency, they also raise concerns about fair competition
+and platform bias---particularly when the platform uses its data or
+visibility advantages to undermine independent sellers Crawford et al.
+(2022); (\textbf{he2020impact?}).
+
+\footnote{I thank Professor Eric Weisbrod for guidance and patience for
+  this challenging project. This project was completed for ACCT 995 at
+  the University of Kansas.}
+
+\subsection{1.3. What is the variable of
+interest?}\label{what-is-the-variable-of-interest}
+
+The main variable of interest is a binary classification outcome
+indicating whether a third-party SKU deactivated (i.e., exited) within
+the observed time period. This allows us to analyze the likelihood and
+predictors of seller exit from the platform.
+
+\section{Literature Review}\label{literature-review}
+
+The rise of hybrid platforms---where the platform competes directly with
+the sellers it hosts---has raised concerns about fair competition and
+self-preferencing behavior. Foundational theoretical and empirical work
+by Jiang et al. (2011) and Zhu \& Liu (2018) suggests that platform
+entry is often strategic, targeting successful product spaces based on
+third-party seller performance. While this allows platforms to reduce
+uncertainty, it also creates potential harm: platform entry is
+associated with reduced sales, lower visibility, and even exit for
+affected third-party sellers. These findings support the view that
+platform entry can crowd out independent merchants, though the magnitude
+and mechanisms of these effects may vary across product types.
+
+On one hand, Zhu \& Liu (2018) show that Amazon's entry reduces
+third-party sales and discourages continued participation. Similarly,
+Song et al. (2020) document that sellers anticipate platform entry and
+adjust their product variety accordingly. These studies highlight the
+competitive threat that platform entry can pose.
+
+On the other hand, Deng et al. (2023) and Chi et al. (2022) present
+evidence for positive spillovers: when the platform enters a product
+space, it may boost overall demand through marketing and consumer
+awareness, indirectly benefiting existing third-party sellers. In some
+cases, third-party sales even rise after platform entry.
+
+The divergence in these findings points to the role of context---such as
+product popularity, brand strength, and timing of entry. Some products
+may benefit from visibility spillovers, while others suffer from direct
+substitution. However, few studies systematically examine whether such
+spillover effects translate into exit behavior. In this project, we
+shift the focus from pricing and sales to the more fundamental question
+of market survival. By predicting third-party exit, we offer new insight
+into how platform dynamics shape seller persistence under competitive
+pressure.
+
+\#Dataset Overview \#\# 3.1. What is the dataset about?
+
+This study draws on SKU-level transaction data from JD.com, a major
+hybrid e-commerce platform in China. The dataset spans a single
+month---March 2018---and provides detailed information about each SKU's
+commercial activity and platform presence. For each SKU, the data
+includes:
+
+\begin{itemize}
+\tightlist
+\item
+  Product characteristics (e.g., brand, functional attributes),
+\item
+  Activation and deactivation dates (capturing SKU entry and exit),
+\item
+  User interaction measures (e.g., daily clicks, views), and
+\item
+  Purchase activity (e.g., daily order counts).
+\end{itemize}
+
+An important feature of this dataset is that JD.com maintains separate
+listings for each seller-SKU pair, allowing for precise tracking of SKU
+engagement over time. This structure provides a clean empirical setting
+to analyze third-party (3P) seller behavior---particularly decisions to
+deactivate a SKU---amid potential competition from platform-backed
+first-party (1P) sellers Shen et al. (2024).
+
+\subsection{3.2. What are the dataset
+challenges?}\label{what-are-the-dataset-challenges}
+
+This dataset offers rich transactional data, but several limitations
+complicate the analysis:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Short observation window}: The data covers a single month
+  (March 2018), which restricts our ability to observe long-term exit
+  patterns or delayed responses to platform entry.
+\item
+  \textbf{Incomplete attribute data}: Many SKUs lack complete
+  information on core product characteristics, making it difficult to
+  consistently group them into functionally comparable product spaces.
+  As a result, we focus our analysis on the subset of SKUs with
+  non-missing values for both functional attributes and brand
+  identifiers.
+\item
+  \textbf{Defining true entry events}: JD.com's structure makes it
+  challenging to isolate clean instances of first-party entry. We
+  mitigate this by identifying product spaces that transitioned from
+  exclusive third-party to joint presence with first-party SKUs during
+  the sample period Shen et al. (2024).
+\end{itemize}
+
+\subsection{3.3. Exploratory Data Analysis
+(EDA)}\label{exploratory-data-analysis-eda}
+
+We begin with a descriptive overview of the dataset:
+
+\begin{itemize}
+\tightlist
+\item
+  The dataset includes 31,876 unique SKUs, each linked to a seller type,
+  brand, and product attributes.
+\item
+  Over 20 million user click events and approximately 500,000 purchase
+  transactions are recorded, capturing detailed consumer interactions
+  Shen et al. (2024).
+\item
+  Despite the scale, only 9,159 SKUs received at least one order during
+  the observation window, highlighting the skewed nature of demand
+  (\textbf{ernst2006estimating?}).
+\item
+  Preliminary comparisons reveal sharp contrasts between seller types:\\
+  First-party SKUs received an average of 223 orders, while third-party
+  SKUs averaged only 9 orders.
+\end{itemize}
+
+These disparities underscore the need to examine whether platform entry
+is associated with reduced visibility or demand for third-party
+sellers---raising the question of whether first-party participation
+displaces existing market participants Zhu \& Liu (2018); Deng et al.
+(2023).
+
+\begin{verbatim}
+
+active exited 
+ 29578   1123 
+\end{verbatim}
+
+\subsection{3.4 Feature Engineering}\label{feature-engineering}
+
+To support predictive modeling, we engineered a set of variables that
+reflect three core aspects of SKU behavior: the level of competition in
+the product space, product characteristics, and indicators of platform
+performance. The following paragraphs describe the purpose and
+construction of each group of features.
+
+\begin{itemize}
+\item
+  The feature \texttt{max\_non\_interacting\_streak} was created to
+  capture disengagement. This variable records the maximum number of
+  consecutive days during which a SKU received neither a click nor an
+  order. It serves as a proxy for inactivity and is intended to reflect
+  declining customer interest or visibility over time.
+\item
+  To control for variation in scale across categories, we constructed
+  quantile-based rankings for prices, orders, and clicks. These were
+  computed separately at three levels: within product space, within
+  brand, and across the entire catalog. The resulting variables include
+  price quantile within product space
+  (\texttt{price\_quantile\_product}), click quantile within brand
+  (\texttt{click\_quantile\_brand}), and others. These features help
+  capture a SKU's relative position in terms of price and demand.
+\item
+  Several features were included to measure competition within a SKU's
+  environment. These include the total number of SKUs in the product
+  space, the number of first-party and third-party SKUs within the same
+  brand and product group, and whether a first-party SKU entered the
+  space. Together, these variables are intended to capture the intensity
+  of local competition and potential crowding effects.
+\item
+  Product-level attributes were retained as categorical variables. The
+  fields \texttt{attribute1} and \texttt{attribute2} represent the
+  functional classification of each SKU. To avoid dropping observations
+  with incomplete data, missing values were explicitly labeled as
+  ``Missing'' and treated as a separate category.
+\end{itemize}
+
+Table @ref(tab:variable-description-table) presents the key variables
+used in the prediction model. These variables span three conceptual
+groups: (1) competitive pressure, such as the number of rival SKUs in a
+product space; (2) inherent product or brand characteristics, including
+categorical attributes and brand identity; and (3) platform performance
+indicators, such as click volume, order quantiles, and recent
+interaction history.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(knitr)}
+\FunctionTok{library}\NormalTok{(tibble)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+
+\NormalTok{var\_descriptions }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{Variable =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"enter\_typ\_one"}\NormalTok{,}
+    \StringTok{"total\_sku\_type\_1\_in\_product\_space"}\NormalTok{,}
+    \StringTok{"total\_sku\_type\_2\_in\_product\_space"}\NormalTok{,}
+    \StringTok{"total\_sku\_in\_product\_space"}\NormalTok{,}
+    \StringTok{"total\_sku\_type\_1\_in\_product\_spacebrand\_ID"}\NormalTok{,}
+    \StringTok{"total\_sku\_type\_2\_in\_product\_spacebrand\_ID"}\NormalTok{,}
+    \StringTok{"NO\_type\_2\_activated\_in\_product\_spacebrand\_ID"}\NormalTok{,}
+    \StringTok{"NO\_type\_1\_activated\_in\_product\_spacebrand\_ID"}\NormalTok{,}
+    \StringTok{"price\_quantile\_overall"}\NormalTok{,}
+    \StringTok{"price\_quantile\_product"}\NormalTok{,}
+    \StringTok{"price\_quantile\_brand"}\NormalTok{,}
+    \StringTok{"order\_quantile\_product"}\NormalTok{,}
+    \StringTok{"order\_quantile\_brand"}\NormalTok{,}
+    \StringTok{"order\_quantile\_overall"}\NormalTok{,}
+    \StringTok{"click\_quantile\_product"}\NormalTok{,}
+    \StringTok{"click\_quantile\_brand"}\NormalTok{,}
+    \StringTok{"click\_quantile\_overall"}\NormalTok{,}
+    \StringTok{"max\_non\_interacting\_streak"}\NormalTok{,}
+    \StringTok{"attribute1"}\NormalTok{,}
+    \StringTok{"attribute2"}
+    
+\NormalTok{  ),}
+  \AttributeTok{Description =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Indicates whether a 1P SKU entered the product space."}\NormalTok{,}
+    \StringTok{"Number of 1P SKUs in the product space."}\NormalTok{,}
+    \StringTok{"Number of 3P SKUs in the product space."}\NormalTok{,}
+    \StringTok{"Total number of SKUs in the product space."}\NormalTok{,}
+    \StringTok{"Number of 1P SKUs in product space within brand."}\NormalTok{,}
+    \StringTok{"Number of 3P SKUs in product space within brand."}\NormalTok{,}
+    \StringTok{"Number of newly activated 3P SKUs in brand{-}product space."}\NormalTok{,}
+    \StringTok{"Number of newly activated 1P SKUs in brand{-}product space."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s price quantile across all SKUs."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s price quantile within product space."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s price quantile within brand."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s order quantile within product space."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s order quantile within brand."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s order quantile overall."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s click quantile within product space."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s click quantile within brand."}\NormalTok{,}
+    \StringTok{"SKU\textquotesingle{}s click quantile overall."}\NormalTok{,}
+    \StringTok{"Max consecutive days with no interaction."}\NormalTok{,}
+    \StringTok{"Product\textquotesingle{}s first functional attribute."}\NormalTok{,}
+    \StringTok{"Product\textquotesingle{}s second functional attribute."}
+    
+\NormalTok{  ),}
+  \AttributeTok{Category =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{rep}\NormalTok{(}\StringTok{"Competition{-}related"}\NormalTok{, }\DecValTok{8}\NormalTok{),}
+    \FunctionTok{rep}\NormalTok{(}\StringTok{"Platform performance"}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+    \FunctionTok{rep}\NormalTok{(}\StringTok{"Inherent characteristic"}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(var\_descriptions, }\AttributeTok{caption =} \StringTok{"Descriptions of predictor variables used in the machine learning model."}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{, }\StringTok{"condensed"}\NormalTok{, }\StringTok{"responsive"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{collapse\_rows}\NormalTok{(}\AttributeTok{columns =} \DecValTok{3}\NormalTok{, }\AttributeTok{valign =} \StringTok{"top"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{>{}lll}
+\caption{Descriptions of predictor variables used in the machine learning model.}\\
+\toprule
+Variable & Description & Category\\
+\midrule
+\textbf{enter\_typ\_one} & Indicates whether a 1P SKU entered the product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{total\_sku\_type\_1\_in\_product\_space} & Number of 1P SKUs in the product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{total\_sku\_type\_2\_in\_product\_space} & Number of 3P SKUs in the product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{total\_sku\_in\_product\_space} & Total number of SKUs in the product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{total\_sku\_type\_1\_in\_product\_spacebrand\_ID} & Number of 1P SKUs in product space within brand. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{total\_sku\_type\_2\_in\_product\_spacebrand\_ID} & Number of 3P SKUs in product space within brand. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{NO\_type\_2\_activated\_in\_product\_spacebrand\_ID} & Number of newly activated 3P SKUs in brand-product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{NO\_type\_1\_activated\_in\_product\_spacebrand\_ID} & Number of newly activated 1P SKUs in brand-product space. & \multirow[t]{-8}{*}{\raggedright\arraybackslash Competition-related}\\
+\cmidrule{1-3}\pagebreak[0]
+\textbf{price\_quantile\_overall} & SKU's price quantile across all SKUs. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{price\_quantile\_product} & SKU's price quantile within product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{price\_quantile\_brand} & SKU's price quantile within brand. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{order\_quantile\_product} & SKU's order quantile within product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{order\_quantile\_brand} & SKU's order quantile within brand. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{order\_quantile\_overall} & SKU's order quantile overall. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{click\_quantile\_product} & SKU's click quantile within product space. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{click\_quantile\_brand} & SKU's click quantile within brand. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{click\_quantile\_overall} & SKU's click quantile overall. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{max\_non\_interacting\_streak} & Max consecutive days with no interaction. & \multirow[t]{-10}{*}{\raggedright\arraybackslash Platform performance}\\
+\cmidrule{1-3}\pagebreak[0]
+\textbf{attribute1} & Product's first functional attribute. & \\
+\cmidrule{1-2}\nopagebreak
+\textbf{attribute2} & Product's second functional attribute. & \multirow[t]{-2}{*}{\raggedright\arraybackslash Inherent characteristic}\\
+\bottomrule
+\end{longtable}
+
+\section{Model Development and
+Evaluation}\label{model-development-and-evaluation}
+
+\subsection{4.1 Preprocessing
+Strategies}\label{preprocessing-strategies}
+
+To address class imbalance and missing values in the dataset, we
+constructed three modeling recipes. Each recipe includes dummy encoding
+for categorical variables and normalization of predictors but differs in
+how it handles missing data and class imbalance.
+
+\begin{itemize}
+\tightlist
+\item
+  The first recipe applies upsampling to the minority class (exited
+  SKUs) after omitting observations with missing values. This approach
+  balances the dataset while retaining only complete cases.
+\item
+  The second recipe uses SMOTE (Synthetic Minority Oversampling
+  Technique) to generate synthetic examples for the minority class,
+  again following the removal of missing values.
+\item
+  The third recipe applies SMOTE without removing missing values. This
+  allows for the inclusion of more data points but increases the risk of
+  introducing noise due to incomplete records.
+\end{itemize}
+
+These three recipes were designed to explore the sensitivity of model
+performance to different data preparation strategies.
+
+\subsection{4.2 Train-Test Split and
+Cross-Validation}\label{train-test-split-and-cross-validation}
+
+To evaluate model performance, we split the dataset into training and
+testing sets using an 80-20 stratified split. Stratification was applied
+on the \texttt{exited} variable to preserve the original class
+proportions in both subsets. This ensures that the rare event of SKU
+exit remains represented in both training and testing phases.
+
+For model tuning, we employed five-fold cross-validation on the training
+data, again using stratification to maintain class balance within folds.
+This setup improves the stability of performance estimates and helps
+mitigate overfitting.
+
+\subsection{4.3 Classification Models}\label{classification-models}
+
+We implemented and tuned four classification algorithms to predict SKU
+exit:
+
+\begin{itemize}
+\tightlist
+\item
+  A logistic regression model using the \texttt{glm} engine
+\item
+  An elastic net model using \texttt{glmnet}, with the penalty and
+  mixing parameters tuned
+\item
+  A random forest model using the \texttt{ranger} engine with 500 trees
+\item
+  An XGBoost model using the \texttt{xgboost} engine, with tuned
+  hyperparameters and a \texttt{scale\_pos\_weight} parameter set to
+  emphasize the rare exited class
+\end{itemize}
+
+Of these, only the XGBoost model incorporated class weighting in
+addition to SMOTE or upsampling. This additional weighting adjustment
+was intended to further address the severe class imbalance in the
+dataset.
+
+\subsection{4.4 Workflow Setup and
+Tuning}\label{workflow-setup-and-tuning}
+
+Each model-recipe pair was combined into a workflow using the
+workflowsets package and tuned using a grid search over 20
+hyperparameter combinations. Tuning was conducted using five-fold
+cross-validation on the training set, with stratification on the exited
+outcome to maintain class proportions within each fold.
+
+The following metrics were used to evaluate model performance across
+folds:
+
+\begin{itemize}
+\tightlist
+\item
+  Accuracy
+\item
+  Area under the ROC curve (AUC)
+\item
+  Brier score for calibration
+\item
+  Precision
+\item
+  Recall
+\item
+  F1-score
+\end{itemize}
+
+For models like elastic net and XGBoost, tuning focused on
+regularization parameters (penalty, mixture) and tree-specific settings
+(learn\_rate, tree\_depth, etc.). The tune package handled the grid
+search and stored predictions and workflows for downstream use. Parallel
+processing was used to improve efficiency.
+
+While this study used a fixed grid search, the workflow is fully
+compatible with more advanced methods such as Bayesian optimization
+(e.g., via tune\_bayes() in the finetune package), which could be
+explored in future work.
+
+\begin{verbatim}
+unique notes:
+---------------------------------------------------------
+glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\subsection{4.5 Model Comparison
+Summary}\label{model-comparison-summary}
+
+To evaluate model performance across different preprocessing strategies
+and algorithms, we compared workflows built on three recipes and four
+classifiers. Figure @ref(fig:model-performance-summary) summarizes the
+best scores for each workflow based on key metrics, including accuracy,
+precision, recall, F1-score, AUC, and Brier score.
+
+\begin{itemize}
+\tightlist
+\item
+  The XGBoost model using the SMOTE recipe without missing value removal
+  (\texttt{smote\_no\_na\_recipe\_xgboost}) consistently performed best,
+  particularly in terms of recall and F1-score.
+\item
+  Logistic regression models performed the worst, especially under the
+  upsample recipe, highlighting their limited capacity for capturing
+  complex patterns in exit behavior.
+\item
+  Elastic net and random forest models performed moderately well but
+  fell short of XGBoost on recall and overall F1-score.
+\item
+  Recall scores remained low across all workflows, emphasizing the
+  inherent difficulty of identifying rare exit cases.
+\end{itemize}
+
+Based on these results, we selected the SMOTE-based XGBoost model with
+retained missing values as the final model for evaluation and
+interpretation.
+
+\includegraphics{05-ML_final_files/figure-pdf/Plot best model performance-1.pdf}
+
+\subsection{4.6 Model Selection
+Rationale}\label{model-selection-rationale}
+
+While overall accuracy and AUC were relatively high across several
+workflows, recall was notably low---reflecting the rarity and
+unpredictability of exit events in the dataset. Because our research
+goal is to understand and predict SKU exit, recall and F1-score were
+treated as the most important criteria in selecting a final model.
+
+The XGBoost model trained with the SMOTE recipe that retained missing
+values provided the best tradeoff between recall and overall
+performance. Although this approach carries the risk of introducing
+noise from unclean data, it was more effective in identifying exited
+SKUs than other configurations. For this reason, it was selected as the
+final model for interpretation and out-of-sample testing.
+
+\subsection{4.7 Final Model Training and
+Prediction}\label{final-model-training-and-prediction}
+
+The selected workflow---XGBoost trained using SMOTE without removing
+missing values---was finalized using the best hyperparameters identified
+during tuning. This final model was retrained on the full training
+dataset and then applied to the test data.
+
+Predicted outputs include both class labels and class probabilities,
+which were used to generate evaluation metrics and visualizations,
+including the confusion matrix and SHAP-based model interpretation.
+
+\subsection{4.8 Evaluation of Final Model
+Performance}\label{evaluation-of-final-model-performance}
+
+\subsubsection{4.8.1 Confusion Matrix}\label{confusion-matrix}
+
+Figure (\textbf{ref?})(fig-conf-matrix) displays the confusion matrix
+generated from the final XGBoost model's predictions on the test set.
+The counts are as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  True positives (bottom-right): 28 exited SKUs correctly predicted as
+  exited
+\item
+  True negatives (top-left): 5,911 active SKUs correctly predicted as
+  active
+\item
+  False positives (top-right): 201 active SKUs incorrectly predicted as
+  exited
+\item
+  False negatives (bottom-left): 1 exited SKU incorrectly predicted as
+  active
+\end{itemize}
+
+Although the model identifies a portion of the exited SKUs, the number
+of false positives (201) significantly exceeds the true positives (28).
+This pattern indicates a tendency to over-predict exit events, which
+reduces the trustworthiness of its output in practice.
+
+The model is especially prone to false alarms, flagging many SKUs as
+exited when they are actually active. While only one exited SKU was
+missed, this still matters in a rare-event prediction context. Overall,
+the imbalance between correctly and incorrectly predicted exits weakens
+the model's practical utility.
+
+\includegraphics{05-ML_final_files/figure-pdf/Confusion matrix-1.pdf}
+
+\subsubsection{4.8.2 Classification
+Metrics}\label{classification-metrics}
+
+The metrics reported in Table (\textbf{ref?})(tab:eval-metrics-table)
+provide a broader view of the model's predictive performance:
+
+Accuracy measures overall correctness, reflecting how many SKUs were
+predicted correctly regardless of class.
+
+Precision indicates how many of the SKUs predicted as exited were
+actually exited. Low precision here reflects the large number of false
+positives.
+
+Recall captures the model's ability to detect exited SKUs. This is
+particularly important in rare event detection tasks.
+
+F1-score summarizes the balance between precision and recall. In this
+case, it reflects moderate performance.
+
+ROC AUC quantifies the model's ability to distinguish exited from active
+SKUs across a range of classification thresholds.
+
+These metrics confirm that the model achieves a reasonable balance
+between recall and overall accuracy, but precision remains low due to
+frequent over-prediction of exit. This supports the view that, while the
+model detects some meaningful patterns, its predictions may not yet be
+reliable enough for automated business decisions regarding third-party
+seller exit.
+
+\begin{verbatim}
+# A tibble: 5 x 3
+  .metric   .estimator .estimate
+  <chr>     <chr>          <dbl>
+1 accuracy  binary         0.967
+2 precision binary         0.967
+3 recall    binary         1.00 
+4 f_meas    binary         0.983
+5 roc_auc   binary         0.162
+\end{verbatim}
+
+\section{Global Model Explanation}\label{global-model-explanation}
+
+To better understand which features influenced the model's predictions,
+we applied three complementary global interpretation methods: (1)
+internal gain-based importance via the vip package, (2)
+permutation-based dropout loss using DALEX, and (3) partial dependence
+analysis for top predictors.
+
+\subsection{5.1. Variable Importance via XGBoost
+(VIP)}\label{variable-importance-via-xgboost-vip}
+
+Figure (\textbf{ref?})(fig-vip-xgb) ranks the top 20 predictors based on
+XGBoost's internal gain metric. Notably, features like
+max\_non\_interacting\_streak and click\_quantile\_overall appear most
+influential, suggesting that prolonged inactivity and lack of visibility
+are strong indicators of SKU exit. This aligns with the intuition that
+disengagement and poor platform performance precede deactivation
+decisions.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{05-ML_final_files/figure-pdf/fig-vip-xgb-1.pdf}
+
+}
+
+\caption{\label{fig-vip-xgb}}
+
+\end{figure}%
+
+\subsection{5.2. Permutation-Based Variable Importance (Custom 0/1
+Loss)}\label{permutation-based-variable-importance-custom-01-loss}
+
+Figure (\textbf{ref?})(fig-custom-permutation-vi) shows the variable
+importance results under a permutation scheme using a binary 0/1 loss
+function. Variables such as max\_non\_interacting\_streak,
+total\_sku\_type\_2\_in\_product\_space, and click\_quantile\_overall
+are among the most important predictors, confirming earlier findings
+that disengagement and competitive intensity are key drivers of SKU
+exit.
+
+Notably, the variable enter\_typ\_one, which indicates whether a
+first-party SKU entered the same product space, ranks near the bottom in
+terms of importance. This suggests that, in the context of this
+predictive model, first-party entry was not a strong direct predictor of
+third-party SKU deactivation. While entry may still play an indirect or
+structural role, it does not appear to influence exit decisions in a
+highly predictive way based on the observable features used in this
+model.
+
+\begin{verbatim}
+Preparation of a new explainer is initiated
+  -> model label       :  XGBoost Exit Model 
+  -> data              :  24560  rows  30  cols 
+  -> data              :  tibble converted into a data.frame 
+  -> target variable   :  24560  values 
+  -> predict function  :  yhat.workflow  will be used (  default  )
+  -> predicted values  :  No value for predict function target column. (  default  )
+  -> model_info        :  package tidymodels , ver. 1.3.0 , task classification (  default  ) 
+  -> predicted values  :  numerical, min =  0.0001366138 , mean =  0.01243563 , max =  0.987971  
+  -> residual function :  difference between y and yhat (  default  )
+  -> residuals         :  numerical, min =  -0.3583511 , mean =  0.02396502 , max =  0.9993653  
+  A new explainer has been created!  
+\end{verbatim}
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{05-ML_final_files/figure-pdf/fig-custom-permutation-vi-1.pdf}
+
+}
+
+\caption{\label{fig-custom-permutation-vi}}
+
+\end{figure}%
+
+\section{Partial Dependence Profiles}\label{partial-dependence-profiles}
+
+Figure (\textbf{ref?})(fig-pdp-top): Partial Dependence Profiles (PDPs)
+for the six most influential predictors in the XGBoost model.
+
+This figure presents Partial Dependence Profiles (PDPs), which visualize
+the marginal effect of each individual feature on the predicted
+probability of SKU exit, holding all other variables constant. The plots
+reveal how changes in a single variable influence the model's average
+prediction.
+
+Key observations include:
+
+click\_quantile\_overall: Exit probability decreases as visibility
+increases. SKUs in higher click quantiles (i.e., with more historical
+exposure) are less likely to exit.
+
+max\_non\_interacting\_streak: The probability of exit rises sharply
+with even short periods of inactivity. The risk plateaus after
+approximately 10--15 days without interaction.
+
+type\_2\_activated\_in\_product\_spacebrand\_ID: A larger number of new
+third-party SKUs in the same brand-product space increases the
+likelihood of exit, likely reflecting localized competition.
+
+total\_sku\_in\_product\_space and
+total\_sku\_type\_2\_in\_product\_space: Exit risk spikes in moderately
+crowded product spaces (\textasciitilde200--300 SKUs), suggesting
+crowding effects may peak at certain densities.
+
+total\_sku\_type\_2\_in\_product\_spacebrand\_ID: Shows a U-shaped
+pattern. Both low and high levels of competition within the
+brand-product niche appear to increase exit probability, while moderate
+levels pose less risk.
+
+These profiles validate the model's emphasis on real-time engagement and
+local market structure as key predictors of third-party SKU survival.
+
+\begin{verbatim}
+Preparation of a new explainer is initiated
+  -> model label       :  XGBoost Exit Model 
+  -> data              :  24560  rows  30  cols 
+  -> data              :  tibble converted into a data.frame 
+  -> target variable   :  24560  values 
+  -> predict function  :  yhat.workflow  will be used (  default  )
+  -> predicted values  :  No value for predict function target column. (  default  )
+  -> model_info        :  package tidymodels , ver. 1.3.0 , task classification (  default  ) 
+  -> predicted values  :  numerical, min =  0.0001366138 , mean =  0.01243563 , max =  0.987971  
+  -> residual function :  difference between y and yhat (  default  )
+  -> residuals         :  numerical, min =  -0.3583511 , mean =  0.02396502 , max =  0.9993653  
+  A new explainer has been created!  
+\end{verbatim}
+
+\includegraphics{05-ML_final_files/figure-pdf/plot-dalex-pdp-top6-1.pdf}
+
+\section{Conclusion}\label{conclusion}
+
+This study set out to predict third-party (3P) SKU exit on JD.com
+following first-party (1P) entry into product spaces, using a
+combination of machine learning models and interpretability tools. While
+the modeling pipeline was comprehensive---incorporating careful feature
+engineering, multiple classification algorithms, and rigorous evaluation
+through cross-validation---the predictive performance of all models was
+limited, particularly in identifying rare exit events.
+
+Our best-performing model, an XGBoost classifier trained with SMOTE and
+class weighting, achieved moderate recall and F1-score but suffered from
+high false positive rates. These outcomes suggest that third-party SKU
+exit is not only rare but also difficult to anticipate based on
+observable features alone. This unpredictability may reflect the
+influence of unobserved strategic decisions, seller-specific
+constraints, or platform-level interventions not captured in the
+dataset.
+
+As a result, the model's explanatory tools---such as feature importance
+rankings and partial dependence plots---should be interpreted with
+caution. While certain patterns (e.g., prolonged inactivity, high
+crowding) appear consistently influential across multiple explanation
+techniques, their practical relevance is limited by the model's low
+precision and weak out-of-sample performance. In essence, when a model
+cannot reliably predict an outcome, its explanations offer limited
+actionable value.
+
+Future research could benefit from richer longitudinal data,
+seller-level covariates, and more precise identification of platform
+entry events. Additionally, causal inference methods may complement
+predictive models by isolating structural effects of platform
+competition on seller survival. Until then, predictive modeling of 3P
+exit on hybrid platforms remains a challenging task---highlighting the
+complexity of strategic behavior in competitive online marketplaces.
+
+\#Refrence
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-chi2022competition}
+Chi, Y., Qing, P., Jin, Y. J., Yu, J., Dong, M. C., \& Huang, L. (2022).
+Competition or spillover? Effects of platform-owner entry on provider
+commitment. \emph{Journal of Business Research}, \emph{144}, 627--636.
+
+\bibitem[\citeproctext]{ref-crawford2022amazon}
+Crawford, G. S., Courthoud, M., Seibel, R., \& Zuzek, S. (2022).
+\emph{Amazon entry on amazon marketplace}.
+
+\bibitem[\citeproctext]{ref-deng2023can}
+Deng, Y., Tang, C. S., Wang, W., \& Yoo, O. S. (2023). Can third-party
+sellers benefit from a platform's entry to the market? \emph{Service
+Science}, \emph{15}(4), 233--249.
+
+\bibitem[\citeproctext]{ref-hu2024supercharged}
+Hu, H., Qi, Y., Lee, H. L., Shen, Z.-J. M., Liu, C., Zhu, W., \& Kang,
+N. (2024). Supercharged by advanced analytics, JD.com attains agility,
+resilience, and shared value across its supply chain. \emph{INFORMS
+Journal on Applied Analytics}, \emph{54}(1), 54--70.
+
+\bibitem[\citeproctext]{ref-jiang2011firm}
+Jiang, B., Jerath, K., \& Srinivasan, K. (2011). Firm strategies in the
+{``mid tail''} of platform-based retailing. \emph{Marketing Science},
+\emph{30}(5), 757--775.
+
+\bibitem[\citeproctext]{ref-shen2024jd}
+Shen, M., Tang, C. S., Wu, D., Yuan, R., \& Zhou, W. (2024). JD.com:
+Transaction-level data for the 2020 MSOM data driven research challenge.
+\emph{Manufacturing \& Service Operations Management}, \emph{26}(1),
+2--10.
+
+\bibitem[\citeproctext]{ref-song2020spillover}
+Song, W., Chen, J., \& Li, W. (2020). Spillover effect of consumer
+awareness on third parties' selling strategies and retailers' platform
+openness. \emph{Information Systems Research}, \emph{32}(1), 172--193.
+
+\bibitem[\citeproctext]{ref-zhu2018competing}
+Zhu, F., \& Liu, Q. (2018). Competing with complementors: An empirical
+look at amazon.com. \emph{Strategic Management Journal}, \emph{39}(10),
+2618--2642.
+
+\end{CSLReferences}
+
+
+
+
+\end{document}
