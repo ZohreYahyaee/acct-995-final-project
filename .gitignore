@@ -1,0 +1,28 @@
+# Ignore raw and large data
+*.csv
+*.tsv
+*.rds
+*.sav
+*.xlsx
+*.xls
+*.zip
+/data/
+
+# Ignore temp output
+*.html
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.log
+
+# Ignore RStudio & Quarto temp files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Keep R and Quarto files
+!*.R
+!*.qmd
+!*.Rproj
