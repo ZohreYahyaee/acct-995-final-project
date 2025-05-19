@@ -2,7 +2,7 @@
 title: "Spillover Effects of Platform Entry: Predicting Third-Party Seller Exit on JD.com"
 author: "Zohre Yahyaee"
 date: today
-format: pdf
+format: html
 bibliography: references.bib
 csl: apa.csl
 abstract: |
@@ -29,9 +29,9 @@ In this research, we investigate the dynamics of hybrid e-commerce platforms, wh
 
 ## 1.2. Why is this research question important?
 
-This question is important because the hybrid platform business model has become ubiquitous among online platforms globally. For example, Amazon in the U.S. has utilized this model since the early 2000s, while Alibaba and JD.com in China also follow similar practices @hu2024supercharged; @wells2018amazon. Understanding the impact of this model is crucial for both policymakers and businesses, as it shapes market competition and affects seller sustainability. While hybrid platforms offer benefits through increased consumer reach and operational efficiency, they also raise concerns about fair competition and platform bias—particularly when the platform uses its data or visibility advantages to undermine independent sellers @crawford2022amazon; @he2020impact.
+This question is important because the hybrid platform business model has become ubiquitous among online platforms globally. For example, Amazon in the U.S. has utilized this model since the early 2000s, while Alibaba and JD.com in China also follow similar practices @hu2024supercharged. Understanding the impact of this model is crucial for both policymakers and businesses, as it shapes market competition and affects seller sustainability. While hybrid platforms offer benefits through increased consumer reach and operational efficiency, they also raise concerns about fair competition and platform bias—particularly when the platform uses its data or visibility advantages to undermine independent sellers @crawford2022amazon.
 
-[^1]
+
 
 [^1]: I thank Professor Eric Weisbrod for guidance and patience for this challenging project. This project was completed for ACCT 995 at the University of Kansas.
 
@@ -99,7 +99,9 @@ summary(df)
 
 ```
 
-#Dataset Overview \## 3.1. What is the dataset about?
+# Dataset Overview
+
+## 3.1. What is the dataset about?
 
 This study draws on SKU-level transaction data from JD.com, a major hybrid e-commerce platform in China. The dataset spans a single month—March 2018—and provides detailed information about each SKU’s commercial activity and platform presence. For each SKU, the data includes:
 
@@ -124,13 +126,16 @@ We begin with a descriptive overview of the dataset:
 
 -   The dataset includes 31,876 unique SKUs, each linked to a seller type, brand, and product attributes.
 -   Over 20 million user click events and approximately 500,000 purchase transactions are recorded, capturing detailed consumer interactions @shen2024jd.
--   Despite the scale, only 9,159 SKUs received at least one order during the observation window, highlighting the skewed nature of demand @ernst2006estimating.
+-   Despite the scale, only 9,159 SKUs received at least one order during the observation window, highlighting the skewed nature of demand.
+
+-   A total of 1,123 SKUs exited the platform during the sample period, out of 31,876 observed SKUs.
+
 -   Preliminary comparisons reveal sharp contrasts between seller types:\
     First-party SKUs received an average of 223 orders, while third-party SKUs averaged only 9 orders.
 
 These disparities underscore the need to examine whether platform entry is associated with reduced visibility or demand for third-party sellers—raising the question of whether first-party participation displaces existing market participants @zhu2018competing; @deng2023can.
 
-```{r Filter to 3P SKUs and define target variable, include=FALSE,echo = FALSE, message = FALSE}
+```{r Filter to 3P SKUs and define target variable, include=FALSE, message = FALSE}
 
 # Step 1: Filter to 3P SKUs and define target variable
 sku_data <- df %>%
@@ -330,9 +335,17 @@ To support predictive modeling, we engineered a set of variables that reflect th
 
 -   Product-level attributes were retained as categorical variables. The fields `attribute1` and `attribute2` represent the functional classification of each SKU. To avoid dropping observations with incomplete data, missing values were explicitly labeled as "Missing" and treated as a separate category.
 
-Table \@ref(tab:variable-description-table) presents the key variables used in the prediction model. These variables span three conceptual groups: (1) competitive pressure, such as the number of rival SKUs in a product space; (2) inherent product or brand characteristics, including categorical attributes and brand identity; and (3) platform performance indicators, such as click volume, order quantiles, and recent interaction history.
+@tbl-variable-description-table presents the key variables used in the prediction model. These variables span three conceptual groups: (1) competitive pressure, such as the number of rival SKUs in a product space; (2) inherent product or brand characteristics, including categorical attributes and brand identity; and (3) platform performance indicators, such as click volume, order quantiles, and recent interaction history.
 
-```{r var-description-table, message=FALSE, warning=FALSE}
+
+```{r}
+#| label: tbl-variable-description-table
+#| tbl-cap: "Descriptions of predictor variables used in the machine learning model."
+#| echo: false
+#| include: true
+#| message: false
+#| warning: false
+
 library(knitr)
 library(tibble)
 library(kableExtra)
@@ -397,6 +410,7 @@ kable(var_descriptions, caption = "Descriptions of predictor variables used in t
   collapse_rows(columns = 3, valign = "top")
 
 ```
+
 
 # Model Development and Evaluation
 
@@ -624,7 +638,7 @@ show_notes(tuned_models)
 
 ## 4.5 Model Comparison Summary
 
-To evaluate model performance across different preprocessing strategies and algorithms, we compared workflows built on three recipes and four classifiers. Figure \@ref(fig:model-performance-summary) summarizes the best scores for each workflow based on key metrics, including accuracy, precision, recall, F1-score, AUC, and Brier score.
+To evaluate model performance across different preprocessing strategies and algorithms, we compared workflows built on three recipes and four classifiers.  @fig-model-performance-summary summarizes the best scores for each workflow based on key metrics, including accuracy, precision, recall, F1-score, AUC, and Brier score.
 
 -   The XGBoost model using the SMOTE recipe without missing value removal (`smote_no_na_recipe_xgboost`) consistently performed best, particularly in terms of recall and F1-score.
 -   Logistic regression models performed the worst, especially under the upsample recipe, highlighting their limited capacity for capturing complex patterns in exit behavior.
@@ -633,7 +647,15 @@ To evaluate model performance across different preprocessing strategies and algo
 
 Based on these results, we selected the SMOTE-based XGBoost model with retained missing values as the final model for evaluation and interpretation.
 
-```{r Plot best model performance,include= TRUE,echo = FALSE}
+
+```{r}
+#| label: fig-model-performance-summary
+#| fig-cap: "Performance comparison across all workflows based on accuracy, precision, recall, F1-score, AUC, and Brier score."
+#| echo: false
+#| include: true
+#| message: false
+#| warning: false
+
 best_metrics <- tuned_models %>%
   collect_metrics() %>%
   group_by(.metric, wflow_id) %>%
@@ -652,6 +674,9 @@ ggplot(best_metrics, aes(x = mean, y = reorder(wflow_id, mean), fill = .metric))
 
 
 ```
+
+:::
+Performance comparison across all workflows based on accuracy, precision, recall, F1-score, AUC, and Brier score.
 
 ## 4.6 Model Selection Rationale
 
@@ -682,6 +707,7 @@ The selected workflow—XGBoost trained using SMOTE without removing missing val
 Predicted outputs include both class labels and class probabilities, which were used to generate evaluation metrics and visualizations, including the confusion matrix and SHAP-based model interpretation.
 
 ```{r  Finalize XGBoost workflow and  Fit final model,include=FALSE,echo = FALSE}
+
 final_xgb_workflow <- tuned_models %>%
   extract_workflow("smote_no_na_recipe_xgboost") %>%
   finalize_workflow(best_xgb)
@@ -710,7 +736,8 @@ preds <- predict(final_fit, new_data = baked_test, type = "prob") %>%
 
 ### 4.8.1 Confusion Matrix
 
-Figure @ref(fig-conf-matrix) displays the confusion matrix generated from the final XGBoost model’s predictions on the test set. The counts are as follows:
+@fig-conf-matrix displays the confusion matrix generated from the final XGBoost model’s predictions on the test set. The counts are as follows:
+
 
 -   True positives (bottom-right): 28 exited SKUs correctly predicted as exited
 -   True negatives (top-left): 5,911 active SKUs correctly predicted as active
@@ -721,7 +748,14 @@ Although the model identifies a portion of the exited SKUs, the number of false 
 
 The model is especially prone to false alarms, flagging many SKUs as exited when they are actually active. While only one exited SKU was missed, this still matters in a rare-event prediction context. Overall, the imbalance between correctly and incorrectly predicted exits weakens the model’s practical utility.
 
-```{r Confusion matrix,include=TRUE,echo = FALSE}
+
+```{r}
+#| label: fig-conf-matrix
+#| fig-cap: "Confusion matrix of XGBoost predictions on the test set, showing counts of true positives, true negatives, false positives, and false negatives."
+#| echo: false
+#| include: true
+#| message: false
+#| warning: false
 # Generate confusion matrix
 conf_mat_res <- conf_mat(preds, truth = exited, estimate = .pred_class)
 
@@ -732,9 +766,10 @@ autoplot(conf_mat_res, type = "heatmap") +
 
 ```
 
+
 ### 4.8.2 Classification Metrics
 
-The metrics reported in Table @ref(tab:eval-metrics-table) provide a broader view of the model’s predictive performance:
+The metrics reported in @tbl-eval-metrics-table provide a broader view of the model’s predictive performance:
 
 Accuracy measures overall correctness, reflecting how many SKUs were predicted correctly regardless of class.
 
@@ -748,8 +783,13 @@ ROC AUC quantifies the model’s ability to distinguish exited from active SKUs 
 
 These metrics confirm that the model achieves a reasonable balance between recall and overall accuracy, but precision remains low due to frequent over-prediction of exit. This supports the view that, while the model detects some meaningful patterns, its predictions may not yet be reliable enough for automated business decisions regarding third-party seller exit.
 
-```{r,include=TRUE,echo = FALSE}
-
+```{r}
+#| label: tbl-eval-metrics-table
+#| tbl-cap: "Evaluation metrics for the final XGBoost model, including accuracy, precision, recall, F1-score, and ROC AUC."
+#| echo: false
+#| include: true
+#| message: false
+#| warning: false
 
 # Make sure no conflicts from caret
 #detach("package:caret", unload = TRUE)
@@ -783,15 +823,24 @@ print(all_metrics)
 
 ```
 
+
+
 # Global Model Explanation
 
 To better understand which features influenced the model’s predictions, we applied three complementary global interpretation methods: (1) internal gain-based importance via the vip package, (2) permutation-based dropout loss using DALEX, and (3) partial dependence analysis for top predictors.
 
 ## 5.1. Variable Importance via XGBoost (VIP)
 
-Figure @ref(fig-vip-xgb) ranks the top 20 predictors based on XGBoost’s internal gain metric. Notably, features like max_non_interacting_streak and click_quantile_overall appear most influential, suggesting that prolonged inactivity and lack of visibility are strong indicators of SKU exit. This aligns with the intuition that disengagement and poor platform performance precede deactivation decisions.
+@fig-vip-xgb ranks the top 20 predictors based on XGBoost’s internal gain metric. Notably, features like max_non_interacting_streak and click_quantile_overall appear most influential, suggesting that prolonged inactivity and lack of visibility are strong indicators of SKU exit. This aligns with the intuition that disengagement and poor platform performance precede deactivation decisions.
 
-```{r fig-vip-xgb, include=TRUE, echo=FALSE}
+```{r}
+#| label: fig-vip-xgb
+#| fig-cap: "Top 20 predictors of third-party SKU exit based on XGBoost’s internal gain metric."
+#| echo: false
+#| include: true
+#| message: false
+#| warning: false
+
 vip(final_fit$fit$fit, num_features = 20, geom = "col", aesthetics = list(fill = "steelblue")) +
   ggtitle("Top 20 Predictors (XGBoost)") +
   theme_minimal(base_size = 12) +
@@ -802,12 +851,23 @@ vip(final_fit$fit$fit, num_features = 20, geom = "col", aesthetics = list(fill =
   )
 
 ```
+
+
 ## 5.2. Permutation-Based Variable Importance (Custom 0/1 Loss)
 
-Figure @ref(fig-custom-permutation-vi) shows the variable importance results under a permutation scheme using a binary 0/1 loss function. Variables such as max_non_interacting_streak, total_sku_type_2_in_product_space, and click_quantile_overall are among the most important predictors, confirming earlier findings that disengagement and competitive intensity are key drivers of SKU exit.
+@fig-custom-permutation-vi shows the variable importance results under a permutation scheme using a binary 0/1 loss function. Variables such as max_non_interacting_streak, total_sku_type_2_in_product_space, and click_quantile_overall are among the most important predictors, confirming earlier findings that disengagement and competitive intensity are key drivers of SKU exit.
 
 Notably, the variable enter_typ_one, which indicates whether a first-party SKU entered the same product space, ranks near the bottom in terms of importance. This suggests that, in the context of this predictive model, first-party entry was not a strong direct predictor of third-party SKU deactivation. While entry may still play an indirect or structural role, it does not appear to influence exit decisions in a highly predictive way based on the observable features used in this model.
-```{r fig-custom-permutation-vi, echo=FALSE, include=TRUE }
+
+```{r}
+#| label: fig-custom-permutation-vi
+#| fig-cap: "Permutation-based variable importance using a binary 0/1 loss function. Variables with higher dropout loss are more important to the XGBoost model's prediction of third-party SKU exit."
+#| echo: false
+#| include: true
+#| message: false
+#| warning: false
+#| results: 'hide'
+
 # Required libraries
 library(DALEXtra)
 library(ggplot2)
@@ -866,29 +926,35 @@ ggplot_imp(vip_dalex)
 
 ```
 
+
 # Partial Dependence Profiles
 
-
-Figure @ref(fig-pdp-top): Partial Dependence Profiles (PDPs) for the six most influential predictors in the XGBoost model.
+@fig-pdp-top: Partial Dependence Profiles (PDPs) for the six most influential predictors in the XGBoost model.
 
 This figure presents Partial Dependence Profiles (PDPs), which visualize the marginal effect of each individual feature on the predicted probability of SKU exit, holding all other variables constant. The plots reveal how changes in a single variable influence the model’s average prediction.
 
 Key observations include:
 
-click_quantile_overall: Exit probability decreases as visibility increases. SKUs in higher click quantiles (i.e., with more historical exposure) are less likely to exit.
+- **click_quantile_overall**: Exit probability decreases as visibility increases. SKUs in higher click quantiles (i.e., with more historical exposure) are less likely to exit.
 
-max_non_interacting_streak: The probability of exit rises sharply with even short periods of inactivity. The risk plateaus after approximately 10–15 days without interaction.
+- **max_non_interacting_streak**: The probability of exit rises sharply with even short periods of inactivity. The risk plateaus after approximately 10–15 days without interaction.
 
-type_2_activated_in_product_spacebrand_ID: A larger number of new third-party SKUs in the same brand-product space increases the likelihood of exit, likely reflecting localized competition.
+- **type_2_activated_in_product_spacebrand_ID**: A larger number of new third-party SKUs in the same brand-product space increases the likelihood of exit, likely reflecting localized competition.
 
-total_sku_in_product_space and total_sku_type_2_in_product_space: Exit risk spikes in moderately crowded product spaces (~200–300 SKUs), suggesting crowding effects may peak at certain densities.
+- **total_sku_in_product_space** and **total_sku_type_2_in_product_space**: Exit risk spikes in moderately crowded product spaces (~200–300 SKUs), suggesting crowding effects may peak at certain densities.
 
-total_sku_type_2_in_product_spacebrand_ID: Shows a U-shaped pattern. Both low and high levels of competition within the brand-product niche appear to increase exit probability, while moderate levels pose less risk.
+- **total_sku_type_2_in_product_spacebrand_ID**: Shows a U-shaped pattern. Both low and high levels of competition within the brand-product niche appear to increase exit probability, while moderate levels pose less risk.
 
 These profiles validate the model's emphasis on real-time engagement and local market structure as key predictors of third-party SKU survival.
 
+```{r}
+#| label: fig-pdp-top
+#| fig-cap: "Partial Dependence Profiles (PDPs) for the six most influential predictors in the XGBoost model. These plots show how each variable affects the predicted probability of SKU exit, averaged over all other features."
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
 
-```{r plot-dalex-pdp-top6, echo=FALSE, message=FALSE, warning=FALSE}
 numeric_exited <- as.numeric(baked_train$exited) - 1
 
 xgb_explainer <- explain_tidymodels(
@@ -897,6 +963,7 @@ xgb_explainer <- explain_tidymodels(
   y = numeric_exited,
   label = "XGBoost Exit Model"
 )
+
 xgb_pdp_data <- model_profile(
   xgb_explainer,
   N = 5000,
@@ -916,6 +983,7 @@ plot(xgb_pdp_data, geom = "aggregates", facet_ncol = 3) +
 ```
 
 
+
 # Conclusion
 
 This study set out to predict third-party (3P) SKU exit on JD.com following first-party (1P) entry into product spaces, using a combination of machine learning models and interpretability tools. While the modeling pipeline was comprehensive—incorporating careful feature engineering, multiple classification algorithms, and rigorous evaluation through cross-validation—the predictive performance of all models was limited, particularly in identifying rare exit events.
@@ -926,4 +994,4 @@ As a result, the model’s explanatory tools—such as feature importance rankin
 
 Future research could benefit from richer longitudinal data, seller-level covariates, and more precise identification of platform entry events. Additionally, causal inference methods may complement predictive models by isolating structural effects of platform competition on seller survival. Until then, predictive modeling of 3P exit on hybrid platforms remains a challenging task—highlighting the complexity of strategic behavior in competitive online marketplaces.
 
-#Refrence
+
